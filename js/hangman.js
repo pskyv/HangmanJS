@@ -20,7 +20,6 @@ var model = {
         this.currentGuess = guess;
         this.guesses.push(guess);
         if (this.selectedWord.indexOf(guess) >= 0) {
-            //this.hits++;
             view.updateSelectedWord();
             if(this.hits == this.selectedWord.length) {
                 view.displayMessage("YOY WIN!!!");
@@ -44,8 +43,9 @@ var model = {
 
 var view = {
     displayMessage : function(msg) {
-        var message = document.getElementById("messageArea");
-        message.innerHTML = msg;    
+        //var message = document.getElementById("messageArea");
+        //message.innerHTML = msg;  
+        $("#messageArea").text(msg);  
     },
     
     updateHangman : function() {
