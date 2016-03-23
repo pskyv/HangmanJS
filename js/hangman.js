@@ -42,19 +42,15 @@ var model = {
 }
 
 var view = {
-    displayMessage : function(msg) {
-        //var message = document.getElementById("messageArea");
-        //message.innerHTML = msg;  
+    displayMessage : function(msg) { 
         $("#messageArea").text(msg);  
     },
     
     updateHangman : function() {
-        var image = document.getElementById("hangman");
-        image.src = "images/stage" + model.misses.toString() + ".png"; 
+        $("#hangman").attr("src", "images/stage" + model.misses.toString() + ".png");
     },
     
     updateSelectedWord : function() {
-        var displayWord = document.getElementById("word");
         var display = "";
         
         if(model.guesses.length == 0) {
@@ -63,7 +59,7 @@ var view = {
             }
         }
         else {            
-            display = displayWord.innerHTML;            
+            display = $("#word").text();            
             for(var i=0; i<model.selectedWord.length; i++) {                
                 if(model.currentGuess == model.selectedWord[i]) {
                     model.hits++;
@@ -71,16 +67,16 @@ var view = {
                 }
             }    
         }
-        displayWord.innerHTML = display;
+        $("#word").text(display);
     } 
 }
     
- window.onload = initialize;
+$(document).ready(initialize);
  
 function initialize() {
     console.log("I'm in!!!");
     
-    var buttons = document.getElementsByTagName("button");
+    var buttons = $(":button");
     for(var i=0; i<buttons.length; i++) {
         buttons[i].onclick = handleButtonClick;
     }
